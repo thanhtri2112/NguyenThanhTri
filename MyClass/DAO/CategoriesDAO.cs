@@ -12,21 +12,21 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
 
-        //select * from
+        //SELECT * FROM ...
         public List<Categories> getList()
         {
             return db.Categories.ToList();
         }
 
-        //seclect * from cho index chi voi status 1 va 2
-        public List<Categories> getList(string status = "ALL")
+        //Index chi voi staus 1,2        
+        public List<Categories> getList(string status = "ALL")//status 0,1,2
         {
             List<Categories> list = null;
             switch (status)
             {
                 case "Index"://1,2
                     {
-                        list = db.Categories.Where(m =>m.Status !=0).ToList();
+                        list = db.Categories.Where(m => m.Status != 0).ToList();
                         break;
                     }
                 case "Trash"://0
@@ -42,9 +42,10 @@ namespace MyClass.DAO
             }
             return list;
         }
+        //details
         public Categories getRow(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return null;
             }
@@ -53,16 +54,22 @@ namespace MyClass.DAO
                 return db.Categories.Find(id);
             }
         }
-        public int Insert(Categories row) 
+
+        //tao moi mau tin
+        public int Insert(Categories row)
         {
             db.Categories.Add(row);
             return db.SaveChanges();
         }
+
+        //cap nhat mau tin
         public int Update(Categories row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
+
+        //Xoa mau tin
         public int Delete(Categories row)
         {
             db.Categories.Remove(row);
