@@ -10,6 +10,7 @@ namespace MyClass.DAO
 {
     public class SuppliersDAO
     {
+        //Copy noi dung cua class CATEGORIES, thay the Categories bang Suppliers
         private MyDBContext db = new MyDBContext();
 
         //SELECT * FROM ...
@@ -73,7 +74,7 @@ namespace MyClass.DAO
         public int Delete(Suppliers row)
         {
             db.Suppliers.Remove(row);
-            return db.SaveChanges();
+            return db.SaveChanges();//thanh cong => return 1
         }
     }
 

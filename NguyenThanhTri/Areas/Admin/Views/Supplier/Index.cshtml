@@ -1,9 +1,10 @@
-﻿@model IEnumerable<MyClass.Model.Suppliers>
+﻿﻿@model IEnumerable<MyClass.Model.Suppliers>
 
 @{
     ViewBag.Title = "Trang chủ nhà cung cấp";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 @section header{
     <link rel="stylesheet" href="~/Public/css/jquery.dataTables.min.css" />
 }
@@ -12,6 +13,7 @@
     <script src="~/Public/js/jquery.dataTables.min.js"></script>
     <script>let table = new DataTable('#myTable');</script>
 }
+
 <div class="wrapper">
     <!-- Main Sidebar Container -->
     <!-- Content Wrapper. Contains page content -->
@@ -56,7 +58,7 @@
                                     <td><input type="checkbox" name="id" value="" /></td>
                                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                    <td><img  src="~/Public/img/supplier/@item.Image" alt="Img" class="img-fluid"/></td>
+                                    <td><img src="~/Public/img/supplier/@item.Image" alt="Img" class="img-fluid" /></td>
                                     <td>@Html.DisplayFor(modelItem => item.Slug)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Order)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Phone)</td>
@@ -84,5 +86,3 @@
         </section><!-- /.content -->
     </div> <!-- /.content-wrapper -->
 </div><!-- ./wrapper -->
-
-
