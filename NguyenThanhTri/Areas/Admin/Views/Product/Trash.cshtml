@@ -26,12 +26,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong class="text-danger">THÙNG RÁC SẢN PHẨM</strong>
+                            <strong class="text-danger">THÙNG RÁC DANH MỤC SẢN PHẨM</strong>
                         </div>
 
                         <div class="col-md-6 text-right">
-                            <a href="@Url.Action("Create","Product")" class="btn-sm btn-success"><i class="fa fa-plus"></i> Thêm</a>
-                            <a href="@Url.Action("Trash","Product")" class="btn-sm btn-danger"><i class="fa fa-trash"></i> Thùng rác</a>
+                            <a href="@Url.Action("Index","Product")" class="btn-sm btn-info"><i class="fa fa-long-arrow-alt-left"></i> Quay lại</a>
                         </div>
                     </div>
                 </div>
@@ -48,6 +47,7 @@
                                 <th>@Html.DisplayNameFor(model => model.Price)</th>
                                 <th>@Html.DisplayNameFor(model => model.Qty)</th>
                                 <th>@Html.DisplayNameFor(model => model.Img)</th>
+                                <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
