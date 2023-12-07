@@ -308,5 +308,88 @@ namespace _63CNTT5N1.Areas.Admin.Controllers
             menusDAO.Delete(menus);
             return RedirectToAction("Index");
         }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////
+        //DELTRAH
+        // GET: Admin/Products/DelTrash/5
+        public ActionResult DelTrash(int? id)
+        {
+            if (id == null)
+            {
+                //thong bao that bai
+                TempData["message"] = new XMessage("danger", "Không tìm thấy mẩu tin");
+                return RedirectToAction("Index");
+            }
+            //truy van dong co id = id yeu cau
+            Menus menus = menusDAO.getRow(id);
+            if (menus == null)
+            {
+                //thong bao that bai
+                TempData["message"] = new XMessage("danger", "Không tìm thấy mẩu tin");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //chuyen doi trang thai cua Satus tu 1,2 -> 0: Không hiển thị ở Index
+                menus.Status = 0;
+
+                //cap nhat gia tri UpdateAt
+                menus.UpdateAt = DateTime.Now;
+
+                //cap nhat lai DB
+                menusDAO.Update(menus);
+
+                //thong bao cap nhat trang thai thanh cong
+                TempData["message"] = TempData["message"] = new XMessage("success", "Xóa mẩu tin vào thùng rác thành công");
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////
+        //TRASH: Luc thung rac
+        // GET: Admin/Products/Trash
+        public ActionResult Trash()
+        {
+            return View(menusDAO.getList("Trash"));
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////
+        //RECOVER
+        // GET: Admin/Products/Recover/5
+        public ActionResult Recover(int? id)
+        {
+            if (id == null)
+            {
+                //thong bao that bai
+                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                return RedirectToAction("Index");
+            }
+            //truy van dong co id = id yeu cau
+            Menus menus = menusDAO.getRow(id);
+            if (menus == null)
+            {
+                //thong bao that bai
+                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //chuyen doi trang thai cua Satus tu 0 -> 2: Khong xuat ban
+                menus.Status = 2;
+
+                //cap nhat gia tri UpdateAt
+                menus.UpdateAt = DateTime.Now;
+
+                //cap nhat lai DB
+                menusDAO.Update(menus);
+
+                //thong bao phuc hoi du lieu thanh cong
+                TempData["message"] = TempData["message"] = new XMessage("success", "Phục hồi mẩu tin thành công");
+
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
